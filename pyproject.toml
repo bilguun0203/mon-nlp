@@ -1,0 +1,47 @@
+[project]
+name = "mon-nlp"
+version = "0.1.0"
+description = "Cyrillic Mongolian text normalization and processing library"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+authors = [
+    { name = "Bilguun Ochirbat", email = "hello@bilguun.dev" }
+]
+requires-python = ">=3.10"
+dependencies = []
+keywords = ["mongolian", "cyrillic", "nlp", "text-processing", "normalization"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.optional-dependencies]
+transliterate = ["phonemizer>=3.0"]
+dev = ["pytest>=8.0", "ruff>=0.4"]
+
+[project.scripts]
+mon-nlp = "mon_nlp.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mon_nlp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
